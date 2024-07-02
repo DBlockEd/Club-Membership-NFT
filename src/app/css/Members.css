@@ -1,0 +1,61 @@
+.all-members {
+    font-family: var(--font-family);
+    color: var(--text-color-dark);
+    background-color: var(--card-background-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .all-members h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .all-members ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .all-members-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .all-members-header {
+    background-color: var(--card-border-color);
+    color: white;
+  }
+  
+  .all-members-header th,
+  .all-members-item td {
+    text-align: left;
+    padding: 0.5rem;
+  }
+  
+  .all-members-item {
+    border-bottom: 1px solid var(--card-border-color);
+  }
+  
+  .all-members-item:last-child {
+    border-bottom: none;
+  }
+  
+  .all-members-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+  }
+  
+  .all-members-name {
+    flex: 1;
+  }
+  
+  .all-members-role {
+    flex: 1;
+    text-align: center;
+    font-style: italic;
+  }
+  
