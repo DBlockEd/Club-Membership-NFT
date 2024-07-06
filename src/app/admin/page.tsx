@@ -13,6 +13,7 @@ const AdminPage = () => {
     const [userAddress, setUserAddress] = useState('');
     const [role, setRole] = useState('member');
     const [year, setYear] = useState('2024');
+    const [isMinting, setIsMinting] = useState(false);
 
     const { isPending: isWriteLoading, status: writeStatus, isError: isWriteError, writeContract } = useWriteContract();
     const toastId = React.useRef(null);
@@ -28,6 +29,7 @@ const AdminPage = () => {
                 autoClose: 5000,
                 type: "success",
             });
+            setIsMinting(false);
         }
         else if (writeStatus === 'error') {
             toast.update(toastId.current, {
@@ -36,11 +38,13 @@ const AdminPage = () => {
                 autoClose: 5000,
                 type: "error",
             });
+            setIsMinting(false);
         }
     }, [writeStatus]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsMinting(true);
 
         const data = new FormData();
         if (image) {
@@ -62,6 +66,7 @@ const AdminPage = () => {
             mintNFT(res.nftURI);
         } else {
             toast.error("Error Submitting Form");
+            setIsMinting(false);
         }
     };
 
@@ -75,6 +80,7 @@ const AdminPage = () => {
             })
         } catch (error) {
             console.error('Error minting NFT:', error);
+            setIsMinting(false);
         }
 
     };
@@ -139,7 +145,13 @@ const AdminPage = () => {
                         <option value="2021">2021</option>
                     </select>
                 </label>
-                <button type="submit" className="admin-button">Submit</button>
+                <button type="submit" className="admin-button" disabled={isMinting}>
+                    {isMinting ? (
+                        <div className="loading-circle"></div>
+                    ) : (
+                        "Submit"
+                    )}
+                </button>
             </form>
             <ToastContainer />
         </div>
